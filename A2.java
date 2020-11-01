@@ -1,6 +1,4 @@
-
 import java.util.Scanner;
-
 /** 
  * COMP 2503 Winter 2020 Assignment 2 
  * 
@@ -10,6 +8,10 @@ import java.util.Scanner;
  * @author Maryam Elahi
  * @date Fall 2020
 */
+/**
+ * @version November 1, 2020
+ * @author DeerByte
+ */
 
 public class A2 {
 
@@ -21,7 +23,7 @@ public class A2 {
 	private int topN = 4;
 	private int totalwordcount = 0;
 	private Scanner input = new Scanner(System.in);
-	//private SLL<Avenger> mentionList = new SLL<Avenger>();
+	private SLL<Avenger> mentionList = new SLL<Avenger>();
 	//private SLL<Avenger> alphabticalList = new SLL<Avenger>();
 	//private SLL<Avenger> mostPopularList = new SLL<Avenger>(new AvengerComparatorFreqDesc());
 	//private SLL<Avenger> leastPopularList = new SLL<Avenger>(new AvengerComparatorFreqAsc());
@@ -63,7 +65,13 @@ public class A2 {
 			String word = cleanWord(input.next());
 
 			if (word.length() > 0) {
-				// TODO:
+				totalwordcount++;
+				int rosterIndex = getAvengerId(word);
+
+				if (rosterIndex != -1) {
+					Avenger hero = createAvenger(rosterIndex);
+					//TODO: create addMention method. Add here.
+				}
 			}
 		}
 	}
@@ -113,5 +121,42 @@ public class A2 {
 		// Todo: Print the list of avengers in alphabetical order
 		
 		System.out.println();
+	}
+
+	/**
+	 * !Uses avengerRoster!
+	 * 
+	 *  Requires changes if avengerRoster indices go beyond [x][y>1].
+	 * 
+	 * 	If no match  is found, returns -1; 
+	 *  If a match is found in avengerRoster, returns the first index of avengersRoster
+	 * 
+	 *  
+	 * @param input - String to be matched against avengerRoster.
+	 * @return int - first index of corresponding hero in avengersRoster. 
+	 */
+	private int getAvengerId(String input) {
+		int id = -1;
+		for(int i = 0; i < avengerRoster.length; i++) {
+			for (int j = 0; j < 2; j++) {
+				if (avengerRoster[i][j].equals(input)) {
+					id = i;
+					return id;
+				}
+			}
+		}
+		return id;
+	}
+
+	private Avenger createAvenger(int rosterIndex) {
+		return new Avenger(avengerRoster[rosterIndex][0], avengerRoster[rosterIndex][1], 1);
+	}
+
+	private void addMention(Avenger a) {
+		int index = mentionList.indexOf(a);
+
+		if (index == -1) {
+			mentionList.
+		}
 	}
 }
