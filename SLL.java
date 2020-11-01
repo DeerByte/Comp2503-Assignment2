@@ -67,6 +67,10 @@ public class SLL<T extends Comparable<T>> {
 			next = n;
 		}
 
+		public boolean hasNext() {
+			return next != null;
+		}
+
 		public String toString() {
 			return "Node: " + getData().toString();
 		}
@@ -82,15 +86,24 @@ public class SLL<T extends Comparable<T>> {
 	 * 
 	 * 
 	 */
-	public void insertFirstLink(T data) {
+	public void addToHead(T data) {
 		Node<T> newLink = new Node<>(data);
 		newLink.next = head;
 		head = newLink;
 	}
+	/**
+	 * TODO: finish add(T) method.
+	 * Adds the object to the SLL at the tail.
+	 * @param data
+	 * @return
+	 */
+	public boolean add(T data) {
+		for (int i = size)
+	}
 
 	/*
 	 * Remove Link Method
-	 * 
+	 * TODO: finish remove method.
 	 * 
 	 * INCOMPLETE
 	 * 
@@ -102,12 +115,16 @@ public class SLL<T extends Comparable<T>> {
 	*
 	* If you're removing a node, you can use an index or an object reference address.
 	*/
-	public Node<T> removeLink(String Name) {
+	public T remove(T obj) {
 
 		Node<T> currentLink = head;
 		Node<T> previousLink = head;
 
-		while (currentLink.Name != Name) {
+		if (currentLink == null) {
+			return null;
+		}
+
+		while (!currentLink.getData().equals(obj)) {
 			if (currentLink.next == null) {
 				return null;
 			} else {
@@ -123,9 +140,9 @@ public class SLL<T extends Comparable<T>> {
 			System.out.println("currentLink: " + currentLink);
 			System.out.println("firstLink: " + head);
 
-			previousLink.next = currentLink.next;
+			previousLink.setNext(currentLink.getNext());
 		}
-		return currentLink;
+		return currentLink.getData();
 	}
 	
 	//returns size
@@ -137,35 +154,63 @@ public class SLL<T extends Comparable<T>> {
 	/*
 	 * Find Method
 	 * 
-	 * 
+	 * TODO: finish find(T) method.
 	 * INCOMPLETE
 	 * 
 	 * 
 	 */
 	
-	public Node<T> find(String name){	
-		Node<T> theLink = head;			
-		if(!isEmpty()){
-			while(theLink.Name != name){
-				if(theLink.next == null){
-					return null;	
+	public T find(T e){	
+		Node<T> current = head;			
+		if(isEmpty()){
+			System.out.println("Empty LinkedList");	
+
+		} else {
+			while(!current.getData().equals(e)){
+				if(current.next == null){
+					return null;
+
 				} else {
-					theLink = theLink.next;			
+					current = current.getNext();		
 				}		
-			}		
-		} else {			
-			System.out.println("Empty LinkedList");		
+			}				
 		}	
-		return theLink;	
+		return current.getData();	
 	}
 	
 	/*
 	 * Add in Order Method
 	 * 
-	 * 
+	 * TODO: finish addInOrder(T) method.
 	 * INCOMPLETE
 	 * 
 	 * 
 	 */
 	
+	 /**
+	  * Searches for index of object within list. If no such object exists or the list is empty, returns -1.
+
+	  * @author DeerByte
+	  * @param e - element within list
+	  * @return int: index of object, or -1.
+	  */
+	 public int indexOf(T e) {
+		 int index = -1;
+
+		 if (head == null) {
+			 return index;
+
+		 } else {
+			Node<T> current = head;
+			index = 0;
+
+			while (!current.getData().equals(e)) {
+				if (!current.hasNext()) {
+					return -1;
+				}
+				index++;
+			}
+			return index;
+		 }
+	 }
 }
