@@ -4,13 +4,11 @@ public class SLL<T extends Comparable<T>> {
 
 	private Node<T> head;
 	private int size;
-	private Node<T> next;
 	
 	
 	//I haven't created this class since someone else was doing that.
 	private Comparator<T> comparator;
 	
-	//To add avengers to list, don't know if we need this though
 
 
 	//A little confused do I put our avengers variables in our list?
@@ -28,7 +26,7 @@ public class SLL<T extends Comparable<T>> {
 	}
 	
 	//checking 2 objects
-	private int compare(T o1, T o2) {
+	public int compare(T o1, T o2) {
 		if (comparator == null)
 			return o1.compareTo(o2);
 		else
@@ -43,14 +41,13 @@ public class SLL<T extends Comparable<T>> {
 	public static class Node<T extends Comparable<T>> {
 
 		private T data;
-		public Node<T> next;
-		public String Name;
+		private Node<T> next;
 
 		/**
 		 * Constructor for objects of class Node
 		 */
-		public Node(T avenger) {
-			data = avenger;
+		public Node(T data) {
+			this.data = data;
 			next = null;
 		}
 
@@ -85,8 +82,8 @@ public class SLL<T extends Comparable<T>> {
 	 * 
 	 * 
 	 */
-	public void insertFirstLink(T Avenger) {
-		Node<T> newLink = new Node<T>(Avenger);
+	public void insertFirstLink(T data) {
+		Node<T> newLink = new Node<>(data);
 		newLink.next = head;
 		head = newLink;
 	}
@@ -99,6 +96,12 @@ public class SLL<T extends Comparable<T>> {
 	 * 
 	 * 
 	 */
+	/*
+	* The name of the Avenger within the Node should remain isolated from the Node class, 
+	*			as the field belongs to the Avenger class. 
+	*
+	* If you're removing a node, you can use an index or an object reference address.
+	*/
 	public Node<T> removeLink(String Name) {
 
 		Node<T> currentLink = head;
