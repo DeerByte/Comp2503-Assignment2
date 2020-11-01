@@ -24,9 +24,9 @@ public class A2 {
 	private int totalwordcount = 0;
 	private Scanner input = new Scanner(System.in);
 	private SLL<Avenger> mentionList = new SLL<Avenger>();
-	//private SLL<Avenger> alphabticalList = new SLL<Avenger>();
-	//private SLL<Avenger> mostPopularList = new SLL<Avenger>(new AvengerComparatorFreqDesc());
-	//private SLL<Avenger> leastPopularList = new SLL<Avenger>(new AvengerComparatorFreqAsc());
+	private SLL<Avenger> alphabeticList = new SLL<Avenger>();
+	private SLL<Avenger> mostPopularList = new SLL<Avenger>(new AvengerComparatorFreqDesc());
+	private SLL<Avenger> leastPopularList = new SLL<Avenger>(new AvengerComparatorFreqAsc());
 	
 	public static void main(String[] args) {
 		A2 a1 = new A2();
@@ -43,6 +43,18 @@ public class A2 {
 		// TODO: 
 		// Create a mover and traverse through the mentionList.
 		// Add each avenger to the other three lists. 
+		Avenger curr;
+
+		if (mentionList.size() == 0) {
+			return;
+		}
+
+		for (int i = 0; i < mentionList.size(); i++) {
+			curr = mentionList.get(i);
+			alphabeticList.addInOrder(curr);
+			mostPopularList.addInOrder(curr);
+			leastPopularList.addInOrder(curr);
+		}
 	}
 
 	/**
@@ -70,7 +82,7 @@ public class A2 {
 
 				if (rosterIndex != -1) {
 					Avenger hero = createAvenger(rosterIndex);
-					//TODO: create addMention method. Add here.
+					addMention(hero);
 				}
 			}
 		}
@@ -96,11 +108,11 @@ public class A2 {
 	 */
 	private void printResults() {
 		System.out.println("Total number of words: " + totalwordcount);
-		//System.out.println("Number of Avengers Mentioned: " + ??);
+		System.out.println("Number of Avengers Mentioned: " + mentionList.size());
 		System.out.println();
 
 		System.out.println("All avengers in the order they appeared in the input stream:");
-		// Todo: Print the list of avengers in the order they appeared in the input
+		//TODO: Figure out how to iterate through the list.
 		// Make sure you follow the formatting example in the sample output
 
 		System.out.println();
@@ -156,7 +168,26 @@ public class A2 {
 		int index = mentionList.indexOf(a);
 
 		if (index == -1) {
-			mentionList.
+			mentionList.add(a);
+
+		} else {
+			mentionList.get(index).mentioned();
 		}
+	}
+
+	private void printFirstXFromList(int numToPrint) {
+		if (numToPrint > mentionList.size()) {
+			
+			for (int i = 0; i < mentionList.size(); i++) {
+				System.out.println(mentionList.get(i));
+			}
+			
+		} else {
+			
+			for (int i = 0; i < numToPrint; i++) {
+				System.out.println(mentionList.get(i));
+			}
+		}
+		
 	}
 }
