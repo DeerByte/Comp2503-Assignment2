@@ -4,6 +4,7 @@ public class SLL<T extends Comparable<T>> {
 
 	private Node<T> head;
 	private int size;
+	private Node<T> tail;
 	
 	
 	//I haven't created this class since someone else was doing that.
@@ -16,6 +17,7 @@ public class SLL<T extends Comparable<T>> {
 		head = null;
 		size = 0;
 		comparator = null;
+		tail = null;
 	}
 
 	
