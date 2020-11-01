@@ -107,6 +107,7 @@ public class Avenger implements Comparable<Avenger>{
 	
 	/**
 	 * Overrides Object.equals(Object o). 
+     * Does not compare the freqMentioned fields.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -133,5 +134,18 @@ public class Avenger implements Comparable<Avenger>{
 		}
 		
 		return true;
-	}
+    }
+    /**
+     * Does not compare hash the freqMentioned field.
+     * Source: https://medium.com/codelog/overriding-hashcode-method-effective-java-notes-723c1fedf51c
+     */
+    @Override
+    public int hashCode() {
+        int result = 19;
+
+        result = 23 * result + heroAlias.hashCode() * result;
+        result = 23 * result + lastName.hashCode() * result;
+
+        return result;
+    }
 }
