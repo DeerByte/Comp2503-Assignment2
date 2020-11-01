@@ -1,8 +1,9 @@
 import java.util.Comparator;
+import java.lang.IndexOutOfBoundsException;
 
-public class SLL<T extends Comparable<T>> {
+public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
-	private Node<T> head;
+	private Node<T> head, tail;
 	private int size;
 	private Node<T> tail;
 	
@@ -15,6 +16,7 @@ public class SLL<T extends Comparable<T>> {
 	//A little confused do I put our avengers variables in our list?
 	public SLL() {
 		head = null;
+		tail = null;
 		size = 0;
 		comparator = null;
 		tail = null;
@@ -23,6 +25,7 @@ public class SLL<T extends Comparable<T>> {
 	
 	public SLL(Comparator<T> externalComp) {
 		head = null;
+		tail = null;
 		size = 0;
 		comparator = externalComp;
 	}
@@ -38,47 +41,6 @@ public class SLL<T extends Comparable<T>> {
 	public boolean isEmpty() {
 		return (head == null);
 	}
-
-	//Creating Node Class
-	public static class Node<T extends Comparable<T>> {
-
-		private T data;
-		private Node<T> next;
-
-		/**
-		 * Constructor for objects of class Node
-		 */
-		public Node(T data) {
-			this.data = data;
-			next = null;
-		}
-
-		public T getData() {
-			return data;
-		}
-
-		public void setData(T o) {
-			data = o;
-			}
-
-		public Node<T> getNext() {
-			return next;
-		}
-
-		public void setNext(Node<T> n) {
-			next = n;
-		}
-
-		public boolean hasNext() {
-			return next != null;
-		}
-
-		public String toString() {
-			return "Node: " + getData().toString();
-		}
-
-	}
-	//end of node class 
 	
 	/*
 	 * Insert Method
@@ -88,11 +50,16 @@ public class SLL<T extends Comparable<T>> {
 	 * 
 	 * 
 	 */
-	public void addToHead(T data) {
+	public void addToStart(T data) {
 		Node<T> newLink = new Node<>(data);
 		newLink.next = head;
 		head = newLink;
 	}
+
+	/*
+	*TODO: finish contains(T) method.
+	*/
+
 	/**
 	 * TODO: finish add(T) method.
 	 * Adds the object to the SLL at the tail.
@@ -152,7 +119,17 @@ public class SLL<T extends Comparable<T>> {
 		return size;
 	}
 	
-	
+	public T get(int index) {
+		if (index > size - 1) {
+			throw new IndexOutOfBoundsException(index);
+		}
+
+		Node<T> pointer = head;
+		for (int i = 0; i < index; i ++) {
+			pointer = pointer.getNext();
+		}
+		return pointer.getData();
+	}
 	/*
 	 * Find Method
 	 * 
