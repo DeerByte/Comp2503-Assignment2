@@ -60,6 +60,14 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	*TODO: finish contains(T) method.
 	*/
 
+	public boolean contains(T data) {
+		return false;
+
+		//Search for data object.
+		// If found, return true
+		// else false
+	}
+
 	/**
 	 * TODO: finish add(T) method.
 	 * Adds the object to the SLL at the tail.
@@ -67,7 +75,9 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @return
 	 */
 	public boolean add(T data) {
-		for (int i = size)
+		//Create new node using data
+		//Set tail.next reference to new Node.
+		// set Tail reference to new Node.
 	}
 
 	/*
