@@ -170,7 +170,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 		} else {
 			while(!current.getData().equals(e)){
-				if(current.next == null){
+				if(current.getNext() == null){
 					return null;
 
 				} else {
