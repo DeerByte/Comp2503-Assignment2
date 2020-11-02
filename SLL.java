@@ -1,11 +1,10 @@
 import java.util.Comparator;
-import java.lang.IndexOutOfBoundsException;
+import java.util.Iterator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	private Node<T> head, tail;
 	private int size;
-	private Node<T> tail;
 	
 	
 	//I haven't created this class since someone else was doing that.
@@ -19,7 +18,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		tail = null;
 		size = 0;
 		comparator = null;
-		tail = null;
 	}
 
 	
@@ -61,7 +59,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	*/
 
 	public boolean contains(T data) {
-		return false;
 
 		//Search for data object.
 		// If found, return true
@@ -70,14 +67,22 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	 * TODO: finish add(T) method.
-	 * Adds the object to the SLL at the tail.
+	 * Adds the object to the SLL at the end of the list.
 	 * @param data
 	 * @return
 	 */
 	public boolean add(T data) {
 		//Create new node using data
 		//Set tail.next reference to new Node.
-		// set Tail reference to new Node.
+		// set Tail field to new Node.
+	}
+
+	public boolean add(int index, T data) {
+		//TODO: Finish add(int, T) method.
+	}
+
+	public boolean addToEnd(T data) {
+		return add(data);
 	}
 
 	/*
@@ -89,12 +94,12 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * 
 	 */
 	/*
-	* The name of the Avenger within the Node should remain isolated from the Node class, 
-	*			as the field belongs to the Avenger class. 
+	* The Avenger fields should remain within the Avenger class. The Node should remain isolated from the Avenger methods, 
+	*			as the field belongs to the Avenger class, and the Node should function with other data types. 
 	*
-	* If you're removing a node, you can use an index or an object reference address.
+	* If you're removing a node, you can use an index or an object reference address. Method overloading allows for both.
 	*/
-	public T remove(T obj) {
+	public T remove(/* int index OR T data */) {
 
 		Node<T> currentLink = head;
 		Node<T> previousLink = head;
@@ -108,7 +113,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 				return null;
 			} else {
 				previousLink = currentLink;
-				currentLink = currentLink.next;
+				currentLink = currentLink.next; // Methods require brackets (), while fields do not. The Node fields should be private and unnaccessible from here.
 			}
 		}
 		if (currentLink == head) {
@@ -122,6 +127,15 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			previousLink.setNext(currentLink.getNext());
 		}
 		return currentLink.getData();
+	}
+
+	public T removeFromEnd() {
+		//TODO: finish removeFromEnd() method
+	}
+
+
+	public T removeFromStart() {
+		//TODO: finish removeFromStart() method.
 	}
 	
 	//returns size
@@ -201,5 +215,10 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			}
 			return index;
 		 }
+	 }
+	 public Iterator<T> iterator() {
+		//TODO: finish iterable implementation.
+		//Create custom iterator
+		//Return that thang
 	 }
 }
