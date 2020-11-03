@@ -1,5 +1,4 @@
 import java.util.Comparator;
-import java.util.Iterator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
