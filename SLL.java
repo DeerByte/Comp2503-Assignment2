@@ -7,7 +7,8 @@ import java.util.Comparator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
-	private Node<T> head, tail;
+	private Node<T> head;
+	private Node<T> tail;
 	private int size;	
 	private Comparator<T> comparator;
 	
@@ -85,16 +86,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @param data
 	 */
 	public void add(T data) {
-		Node<T> nodeAdd = new Node<T>(data);
-		if(head != null){
-            Node<T> curr = head;
-            while(curr.getNext() != null){
-               curr = curr.getNext();
-            }
-            curr.setNext(nodeAdd);
-        }
-        else
-        	head = nodeAdd;
+		addToEnd(data);
     }
 
 	/**
@@ -122,7 +114,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @param data
 	 */
 	public void addToEnd(T data) {
-		Node<T> nodeAdd = new Node<T>(data);
+		Node<T> nodeAdd = new Node<>(data);
 		if(head != null){
             Node<T> curr = head;
             while(curr.getNext() != null){
@@ -275,9 +267,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	/*
 	 * Add in Order Method
 	 * 
-	 * TODO: finish addInOrder(T) method.
-	 * INCOMPLETE
-	 * 
 	 * 
 	 */
 	public void addInOrder(T e) {
@@ -291,7 +280,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
         } else {
 			Node<T> pointer = head;
 			Node<T> newNode = new Node<>(e);
-			while (pointer.hasNext() && compare(e, pointer.getNext().getdata()) > 0) {
+			while (pointer.hasNext() && compare(e, pointer.getNext().getData()) > 0) {
 				pointer = pointer.getNext();
 			}
 			newNode.setNext(pointer.getNext());
