@@ -24,7 +24,7 @@ public class ListIterator<T extends Comparable<T>> implements Iterator<T>{
     }
 
     public T next() {
-        if (!currNode.hasNext()) {
+        if (currNode == null) {
             throw new NoSuchElementException();
         }
 
