@@ -1,0 +1,9 @@
+Ryan Sobolewski
+-Completed A2.java
+-Completed ListIterator.java
+-Completed Iterable implementation within SLL.java
+-Completed getHead() method within SLL.java
+-Provided source code for DescendingComparator compare(Avenger a1, Avenger a2) method.
+-Provided source code for Avenger.java
+-Completed find(T e) method within SLL.java
+-Completed addInOrderMethod within SLL.java
