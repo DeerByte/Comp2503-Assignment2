@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 /** 
  * COMP 2503 Winter 2020 Assignment 2 
  * 
@@ -112,25 +113,26 @@ public class A2 {
 		System.out.println();
 
 		System.out.println("All avengers in the order they appeared in the input stream:");
-		//TODO: Figure out how to iterate through the list.
-		// Make sure you follow the formatting example in the sample output
+		for (Avenger hero : mentionList) {
+			System.out.println(hero.toString());
+		}
 
 		System.out.println();
 		
 		System.out.println("Top " + topN + " most popular avengers:");
-		// Todo: Print the most popular avengers, see the instructions for tie breaking
-		// Make sure you follow the formatting example in the sample output
+		printFirstXFromList(topN, mostPopularList);
 		
 		System.out.println();
 
 		System.out.println("Top " + topN + " least popular avengers:");
-		// Todo: Print the least popular avengers, see the instructions for tie breaking
-		// Make sure you follow the formatting example in the sample output
+		printFirstXFromList(topN, leastPopularList);
 		
 		System.out.println();
 
 		System.out.println("All mentioned avengers in alphabetical order:");
-		// Todo: Print the list of avengers in alphabetical order
+		for (Avenger hero : alphabeticList) {
+			System.out.println(hero.toString());
+		}
 		
 		System.out.println();
 	}
@@ -175,17 +177,24 @@ public class A2 {
 		}
 	}
 
-	private void printFirstXFromList(int numToPrint) {
-		if (numToPrint > mentionList.size()) {
+	private void printFirstXFromList(int numToPrint, SLL<Avenger> list) {
+		int size = list.size();
+
+		if (size == 0) {
+			return;
+		}
+		ListIterator<Avenger> itr = list.iterator();
+
+		if (numToPrint > size) {
 			
-			for (int i = 0; i < mentionList.size(); i++) {
-				System.out.println(mentionList.get(i));
+			for (int i = 0; i < size; i++) {
+				System.out.println(itr.next().toString());
 			}
 			
 		} else {
 			
 			for (int i = 0; i < numToPrint; i++) {
-				System.out.println(mentionList.get(i));
+				System.out.println(itr.next().toString());
 			}
 		}
 		
