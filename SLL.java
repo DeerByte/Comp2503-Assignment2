@@ -155,13 +155,48 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	}
 
 	public T removeFromEnd() {
-		//TODO: finish removeFromEnd() method
-	}
+		 if (start == null) {
+	        	return null;
+	        }	        
+	    	T data = null;	    	
+	    	if (size() == 1) {
+	    		data = start.getData();
+	        	start = null;
+	        	return data;
+	        }
 
+	        Node<T> curr = start;
+	        Node<T> prev = start;
+	       
+	        while (curr.getNext() != null) 
+	        {
+	        	prev = curr;
+	        	curr = curr.getNext();
+	        }
+	        data = curr.getData();
+	        prev.setNext(null);
+	        return data;
+	    }
 
-	public T removeFromStart() {
-		//TODO: finish removeFromStart() method.
-	}
+		public T removeFromStart() {
+		 T data = null;
+	        if(start != null)
+	        {
+	            if(start.getNext() == null)
+	            {
+	                data = start.getData();
+	                start = null;
+	            }
+	            else
+	            {
+	                Node<T> curr = start;
+	                data = start.getData();
+	                start = start.getNext();
+	                curr.setNext(null);
+	            }
+	        }
+	        return data;
+	    
 	
 	//returns size
 	public int size() {
