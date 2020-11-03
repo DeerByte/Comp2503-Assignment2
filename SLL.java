@@ -192,7 +192,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	
 	 /**
 	  * Searches for index of object within list. If no such object exists or the list is empty, returns -1.
-
 	  * @author DeerByte
 	  * @param e - element within list
 	  * @return int: index of object, or -1.
@@ -216,9 +215,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			return index;
 		 }
 	 }
-	 public Iterator<T> iterator() {
-		//TODO: finish iterable implementation.
-		//Create custom iterator
-		//Return that thang
+
+	 public ListIterator<T> iterator() {
+		return new ListIterator<>(this);
 	 }
 }
