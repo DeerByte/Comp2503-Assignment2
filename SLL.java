@@ -74,11 +74,18 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @param data
 	 * @return
 	 */
-	public boolean add(T data) {
-		//Create new node using data
-		//Set tail.next reference to new Node.
-		// set Tail field to new Node.
-	}
+	public void add(T data) {
+		Node<T> nodeAdd = new Node<T>(data);
+		if(start != null){
+            Node<T> curr = start;
+            while(curr.getNext() != null){
+               curr = curr.getNext();
+            }
+            curr.setNext(nodeAdd);
+        }
+        else
+            start = nodeAdd;
+    }
 
 	public boolean add(int index, T data) {
 		//TODO: Finish add(int, T) method.
