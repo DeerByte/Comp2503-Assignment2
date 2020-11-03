@@ -93,9 +93,21 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
             start = nodeAdd;
     }
 
-	public boolean add(int index, T data) {
-		//TODO: Finish add(int, T) method.
-	}
+	public void add(int index, T data) {
+		int length = size();        
+    	if (length == 0 || index <= 0)
+    		addToStart(data);
+    	else if (length <= index)
+    		addToEnd (data);
+    	else {
+    		Node<T> nodeAdd = new Node<>(data);
+    		Node<T> curr = start;                
+    		for (int count = 0; count < index - 1; count++)                			
+    			curr = curr.getNext();            
+    		nodeAdd.setNext (curr.getNext());            				
+    		curr.setNext(nodeAdd);
+    	}
+    }
 
 	public void addToEnd(T data) {
 		Node<T> nodeAdd = new Node<T>(data);
