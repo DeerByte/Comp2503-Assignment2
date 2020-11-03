@@ -280,6 +280,25 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * 
 	 * 
 	 */
+	public void addInOrder(T e) {
+        
+        if (head == null || compare(e, head.getData()) <= 0) {
+            addToStart(e);
+
+        } else if (tail == null || compare(e, tail.getData()) > 0) { // Fix, will not sort using compare
+			addToEnd(e);
+        
+        } else {
+			Node<T> pointer = head;
+			Node<T> newNode = new Node<>(e);
+			while (pointer.hasNext() && compare(e, pointer.getNext().getdata()) > 0) {
+				pointer = pointer.getNext();
+			}
+			newNode.setNext(pointer.getNext());
+			pointer.setNext(newNode);            
+        }
+	}
+
 	
 	 /**
 	  * Searches for index of object within list. If no such object exists or the list is empty, returns -1.
