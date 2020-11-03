@@ -32,20 +32,28 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	  * @param o1,o2 - objects (avengers)
 	  * @return int: comparator 1,-1, or 0
 	  */
-	public int compare(T o1, T o2) {
-		if (o1 == null | o2 == null)
+	public int compare(T o1, T o2) 
+	{
+		if (o1 == null || o2 == null)
+		{
 			return 0;
-		if (comparator == null)
+		} 
+		else if (comparator == null)
+		{
 			return o1.compareTo(o2);
+		}
 		else
+		{
 			return comparator.compare(o1,o2);
+		}
 	}
 	
 	/**
 	  * returns the head and checks if empty
 	  * @return boolean: returns true if empty
 	  */
-	public boolean isEmpty() {
+	public boolean isEmpty() 
+	{
 		return (head == null);
 	}
 	
@@ -58,9 +66,11 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
     { 
 		size++;
         Node<T> nodeToAdd = new Node<>(data); 
-        if(isEmpty())
+		if(isEmpty())
+		{
         	head = nodeToAdd;
-        else
+		}
+		else
         {
           nodeToAdd.setNext(head);
           head = nodeToAdd;
@@ -73,12 +83,15 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	  * @return boolean: true if it matches, false if no match
 	  *  
 	  */
-	public boolean contains(T data) {
+	public boolean contains(T data) 
+	{
 		Node<T> current = head;    
         while (current != null) 
         { 
-            if (current.getData() == data) 
-                return true;    
+            if (current.getData().equals(data)) 
+            {
+				return true;
+			}    
             current = current.getNext(); 
         } 
         return false;
@@ -88,7 +101,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * Adds the object to the SLL at the start of the list.
 	 * @param data
 	 */
-	public void add(T data) {
+	public void add(T data) 
+	{
 		addToEnd(data);
     }
 
@@ -96,7 +110,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * Adds the object to the SLL at the chosen index of the list
 	 * @param index, data
 	 */
-	public void add(int index, T data) {
+	public void add(int index, T data) 
+	{
 		int length = size();        
     	if (length == 0 || index == 0)
     		addToStart(data);
@@ -117,19 +132,24 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * Adds the object to the SLL at the end of the list.
 	 * @param data
 	 */
-	public void addToEnd(T data) {
+	public void addToEnd(T data) 
+	{
 		size++;
 		Node<T> nodeAdd = new Node<>(data);
-		if(head != null){
+		if(head != null)
+		{
             Node<T> curr = head;
-            while(curr.getNext() != null){
+			while(curr.getNext() != null)
+			{
                curr = curr.getNext();
             }
             curr.setNext(nodeAdd);
         }
-        else
+		else
+		{
         	head = nodeAdd;
-    }
+		}
+	}
 
 	/**
 	 * Removes the object from the list
