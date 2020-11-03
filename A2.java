@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class A2 {
 
-	public static final String[][] AVENGER_ROSTER = { { "captainamerica", "rogers" }, { "ironman", "stark" },
+	private static final String[][] AVENGER_ROSTER = { { "captainamerica", "rogers" }, { "ironman", "stark" },
 			{ "blackwidow", "romanoff" }, { "hulk", "banner" }, { "blackpanther", "tchalla" }, { "thor", "odinson" },
 			{ "hawkeye", "barton" }, { "warmachine", "rhodes" }, { "spiderman", "parker" },
 			{ "wintersoldier", "barnes" } };
@@ -24,10 +24,10 @@ public class A2 {
 	private int topN = 4;
 	private int totalwordcount = 0;
 	private Scanner input = new Scanner(System.in);
-	private SLL<Avenger> mentionList = new SLL<Avenger>();
-	private SLL<Avenger> alphabeticList = new SLL<Avenger>();
-	private SLL<Avenger> mostPopularList = new SLL<Avenger>(new DescendingComparator());
-	private SLL<Avenger> leastPopularList = new SLL<Avenger>(new AscendingComparator());
+	private SLL<Avenger> mentionList = new SLL<>();
+	private SLL<Avenger> alphabeticList = new SLL<>();
+	private SLL<Avenger> mostPopularList = new SLL<>(new DescendingComparator());
+	private SLL<Avenger> leastPopularList = new SLL<>(new AscendingComparator());
 	
 	public static void main(String[] args) {
 		A2 a1 = new A2();
@@ -41,9 +41,6 @@ public class A2 {
 	}
 
 	private void createdOrderedLists() {
-		// TODO: 
-		// Create a mover and traverse through the mentionList.
-		// Add each avenger to the other three lists. 
 		Avenger curr;
 
 		if (mentionList.size() == 0) {
