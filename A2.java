@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class A2 {
 
-	public String[][] avengerRoster = { { "captainamerica", "rogers" }, { "ironman", "stark" },
+	public static final String[][] AVENGER_ROSTER = { { "captainamerica", "rogers" }, { "ironman", "stark" },
 			{ "blackwidow", "romanoff" }, { "hulk", "banner" }, { "blackpanther", "tchalla" }, { "thor", "odinson" },
 			{ "hawkeye", "barton" }, { "warmachine", "rhodes" }, { "spiderman", "parker" },
 			{ "wintersoldier", "barnes" } };
@@ -138,22 +138,22 @@ public class A2 {
 	}
 
 	/**
-	 * !Uses avengerRoster!
+	 * !Uses AVENGER_ROSTER!
 	 * 
-	 *  Requires changes if avengerRoster indices go beyond [x][y>1].
+	 *  Requires changes if AVENGER_ROSTER indices go beyond [x][y>1].
 	 * 
 	 * 	If no match  is found, returns -1; 
-	 *  If a match is found in avengerRoster, returns the first index of avengersRoster
+	 *  If a match is found in AVENGER_ROSTER, returns the first index of avengersRoster
 	 * 
 	 *  
-	 * @param input - String to be matched against avengerRoster.
+	 * @param input - String to be matched against AVENGER_ROSTER.
 	 * @return int - first index of corresponding hero in avengersRoster. 
 	 */
 	private int getAvengerId(String input) {
 		int id = -1;
-		for(int i = 0; i < avengerRoster.length; i++) {
+		for(int i = 0; i < AVENGER_ROSTER.length; i++) {
 			for (int j = 0; j < 2; j++) {
-				if (avengerRoster[i][j].equals(input)) {
+				if (AVENGER_ROSTER[i][j].equals(input)) {
 					id = i;
 					return id;
 				}
@@ -163,7 +163,7 @@ public class A2 {
 	}
 
 	private Avenger createAvenger(int rosterIndex) {
-		return new Avenger(avengerRoster[rosterIndex][0], avengerRoster[rosterIndex][1], 1);
+		return new Avenger(AVENGER_ROSTER[rosterIndex][0], AVENGER_ROSTER[rosterIndex][1], 1);
 	}
 
 	private void addMention(Avenger a) {
