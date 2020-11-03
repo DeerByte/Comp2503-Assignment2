@@ -1,17 +1,16 @@
+/**
+ * @author Justin 
+ * SLL class
+ */
+
 import java.util.Comparator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
-	private Node<T> head, tail, start;
-	private int size;
-	
-	
-	//I haven't created this class since someone else was doing that.
+	private Node<T> head, tail;
+	private int size;	
 	private Comparator<T> comparator;
 	
-
-
-	//A little confused do I put our avengers variables in our list?
 	public SLL() {
 		head = null;
 		tail = null;
@@ -27,7 +26,11 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		comparator = externalComp;
 	}
 	
-	//checking 2 objects
+	/**
+	  * Compares 2 objects with our compareTo or Comparator method
+	  * @param o1,o2 - objects (avengers)
+	  * @return int: comparator 1,-1, or 0
+	  */
 	public int compare(T o1, T o2) {
 		if (comparator == null)
 			return o1.compareTo(o2);
@@ -35,34 +38,37 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			return comparator.compare(o1,o2);
 	}
 	
+	/**
+	  * returns the head and checks if empty
+	  * @return boolean: returns true if empty
+	  */
 	public boolean isEmpty() {
 		return (head == null);
 	}
 	
-	/*
-	 * Insert Method
-	 * 
-	 * 
-	 * INCOMPLETE
-	 * 
-	 * 
-	 */
+	/**
+	  * adds an avenger to the start of the list
+	  * @param T - avenger object
+	  *  
+	  */
 	public void addToStart(T data) 
     { 
         Node<T> nodeToAdd = new Node<>(data); 
         if(isEmpty())
-            start = nodeToAdd;
+        	head = nodeToAdd;
         else
         {
-          nodeToAdd.setNext(start);
-          start = nodeToAdd;
+          nodeToAdd.setNext(head);
+          head = nodeToAdd;
         }
     }
 
-	/*
-	*TODO: finish contains(T) method.
-	*/
-
+	/**
+	  * checks to see if the index data matches the arg data
+	  * @param T - avenger object
+	  * @return boolean: true if it matches, false if no match
+	  *  
+	  */
 	public boolean contains(T data) {
 		Node<T> current = head;    
         while (current != null) 
@@ -75,24 +81,26 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	}
 
 	/**
-	 * TODO: finish add(T) method.
-	 * Adds the object to the SLL at the end of the list.
+	 * Adds the object to the SLL at the start of the list.
 	 * @param data
-	 * @return
 	 */
 	public void add(T data) {
 		Node<T> nodeAdd = new Node<T>(data);
-		if(start != null){
-            Node<T> curr = start;
+		if(head != null){
+            Node<T> curr = head;
             while(curr.getNext() != null){
                curr = curr.getNext();
             }
             curr.setNext(nodeAdd);
         }
         else
-            start = nodeAdd;
+        	head = nodeAdd;
     }
 
+	/**
+	 * Adds the object to the SLL at the chosen index of the list
+	 * @param index, data
+	 */
 	public void add(int index, T data) {
 		int length = size();        
     	if (length == 0 || index <= 0)
@@ -101,7 +109,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
     		addToEnd (data);
     	else {
     		Node<T> nodeAdd = new Node<>(data);
-    		Node<T> curr = start;                
+    		Node<T> curr = head;                
     		for (int count = 0; count < index - 1; count++)                			
     			curr = curr.getNext();            
     		nodeAdd.setNext (curr.getNext());            				
@@ -109,33 +117,28 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
     	}
     }
 
+	/**
+	 * Adds the object to the SLL at the end of the list.
+	 * @param data
+	 */
 	public void addToEnd(T data) {
 		Node<T> nodeAdd = new Node<T>(data);
-		if(start != null){
-            Node<T> curr = start;
+		if(head != null){
+            Node<T> curr = head;
             while(curr.getNext() != null){
                curr = curr.getNext();
             }
             curr.setNext(nodeAdd);
         }
         else
-            start = nodeAdd;
+        	head = nodeAdd;
     }
 
-	/*
-	 * Remove Link Method
-	 * TODO: finish remove method.
-	 * 
-	 * INCOMPLETE
-	 * 
-	 * 
+	/**
+	 * Removes the object from the list
+	 * @param T obj
+	 * @return T link
 	 */
-	/*
-	* The Avenger fields should remain within the Avenger class. The Node should remain isolated from the Avenger methods, 
-	*			as the field belongs to the Avenger class, and the Node should function with other data types. 
-	*
-	* If you're removing a node, you can use an index or an object reference address. Method overloading allows for both.
-	*/
 	public T remove(T obj) {
 
 		Node<T> currentLink = head;
@@ -150,7 +153,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 				return null;
 			} else {
 				previousLink = currentLink;
-				currentLink = currentLink.getNext(); // Methods require brackets (), while fields do not. The Node fields should be private and unnaccessible from here.
+				currentLink = currentLink.getNext();
 			}
 		}
 		if (currentLink == head) {
@@ -166,19 +169,23 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		return currentLink.getData();
 	}
 
+	/**
+	 * Removes the object from the end of the list
+	 * @return T link 
+	 */
 	public T removeFromEnd() {
-		 if (start == null) {
+		 if (head == null) {
 	        	return null;
 	        }	        
 	    	T data = null;	    	
 	    	if (size() == 1) {
-	    		data = start.getData();
-	        	start = null;
+	    		data = head.getData();
+	    		head = null;
 	        	return data;
 	        }
 
-	        Node<T> curr = start;
-	        Node<T> prev = start;
+	        Node<T> curr = head;
+	        Node<T> prev = head;
 	       
 	        while (curr.getNext() != null) 
 	        {
@@ -190,35 +197,45 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	        return data;
 	    }
 
+	/**
+	 * Removes the object from the start of the list
+	 * @return T link 
+	 */
 		public T removeFromStart() {
 		 T data = null;
-	        if(start != null)
+	        if(head != null)
 	        {
-	            if(start.getNext() == null)
+	            if(head.getNext() == null)
 	            {
-	                data = start.getData();
-	                start = null;
+	                data = head.getData();
+	                head = null;
 	            }
 	            else
 	            {
-	                Node<T> curr = start;
-	                data = start.getData();
-	                start = start.getNext();
+	                Node<T> curr = head;
+	                data = head.getData();
+	                head = head.getNext();
 	                curr.setNext(null);
 	            }
 	        }
 	        return data;
-	    
+		}
 	
 	//returns size
 	public int size() {
 		return size;
 	}
 
+	//returns head
 	protected Node<T> getHead() {
 		return head;
 	}
 	
+	/**
+	 * Removes the object from the list
+	 * @param int index
+	 * @return T index data
+	 */
 	public T get(int index) {
 		if (index > size - 1) {
 			throw new IndexOutOfBoundsException(index);
@@ -230,15 +247,12 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		}
 		return pointer.getData();
 	}
-	/*
-	 * Find Method
-	 * 
-	 * TODO: finish find(T) method.
-	 * INCOMPLETE
-	 * 
-	 * 
-	 */
 	
+	/**
+	 * Finds an object in the list
+	 * @param T object
+	 * @return T data
+	 */
 	public T find(T e){	
 		Node<T> current = head;			
 		if(isEmpty()){
@@ -256,6 +270,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		}	
 		return current.getData();	
 	}
+	
 	
 	/*
 	 * Add in Order Method

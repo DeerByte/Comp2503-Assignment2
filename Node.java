@@ -1,6 +1,6 @@
 /**
  * @author Justin 
- * TODO: finish Javadoc
+ * Node class with private variables, constructors, get/set, toString methods
  */
 public class Node<T extends Comparable<T>> {
 
