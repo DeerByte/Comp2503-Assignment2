@@ -2,7 +2,7 @@ import java.util.Comparator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
-	private Node<T> head, tail;
+	private Node<T> head, tail, start;
 	private int size;
 	
 	
