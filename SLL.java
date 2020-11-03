@@ -33,6 +33,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	  * @return int: comparator 1,-1, or 0
 	  */
 	public int compare(T o1, T o2) {
+		if (o1 == null | o2 == null)
+			return 0;
 		if (comparator == null)
 			return o1.compareTo(o2);
 		else

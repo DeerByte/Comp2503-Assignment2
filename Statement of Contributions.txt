@@ -7,3 +7,23 @@ Ryan Sobolewski
 -Provided source code for Avenger.java
 -Completed find(T e) method within SLL.java
 -Completed addInOrderMethod within SLL.java
+
+Justin Gajer
+SLL class constructors/get/set
+
+methods
+compare
+isempty
+addtostart
+add
+add (index)
+add to end/start
+remove /rmv from st/end
+find
+
+Node class constructers/get/set
+
+Zain Muhammad
+-Created run method in A2
+-Created descending comparator using subtraction instead of conditonals
+-Created ascending comparator using subtraction instead of conditonals
