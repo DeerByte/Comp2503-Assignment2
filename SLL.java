@@ -47,11 +47,17 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * 
 	 * 
 	 */
-	public void addToStart(T data) {
-		Node<T> newLink = new Node<>(data);
-		newLink.setNext = head;
-		head = newLink;
-	}
+	public void addToStart(T data) 
+    { 
+        Node<T> nodeToAdd = new Node<>(data); 
+        if(isEmpty())
+            start = nodeToAdd;
+        else
+        {
+          nodeToAdd.setNext(start);
+          start = nodeToAdd;
+        }
+    }
 
 	/*
 	*TODO: finish contains(T) method.
