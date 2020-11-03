@@ -26,8 +26,8 @@ public class A2 {
 	private Scanner input = new Scanner(System.in);
 	private SLL<Avenger> mentionList = new SLL<Avenger>();
 	private SLL<Avenger> alphabeticList = new SLL<Avenger>();
-	private SLL<Avenger> mostPopularList = new SLL<Avenger>(new AvengerComparatorFreqDesc());
-	private SLL<Avenger> leastPopularList = new SLL<Avenger>(new AvengerComparatorFreqAsc());
+	private SLL<Avenger> mostPopularList = new SLL<Avenger>(new DescendingComparator());
+	private SLL<Avenger> leastPopularList = new SLL<Avenger>(new AscendingComparator());
 	
 	public static void main(String[] args) {
 		A2 a1 = new A2();
