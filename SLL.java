@@ -2,12 +2,11 @@ import java.util.Comparator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
-	private Node<T> head, tail;
+	private Comparator<T> comparator;
+	private Node<T> head;
+	private Node<T> tail;
 	private int size;
 	
-	
-	//I haven't created this class since someone else was doing that.
-	private Comparator<T> comparator;
 	
 
 
@@ -51,13 +50,13 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		Node<T> newLink = new Node<>(data);
 		newLink.setNext = head;
 		head = newLink;
+		size++;
 	}
 
 	/*
 	*TODO: finish contains(T) method.
 	*/
-
-	public boolean contains(T data) {
+	public boolean contains(Object obj) {
 
 		//Search for data object.
 		// If found, return true
@@ -71,9 +70,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @return
 	 */
 	public boolean add(T data) {
-		//Create new node using data
-		//Set tail.next reference to new Node.
-		// set Tail field to new Node.
+		Node<T> 
 	}
 
 	public boolean add(int index, T data) {
@@ -112,7 +109,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 				return null;
 			} else {
 				previousLink = currentLink;
-				currentLink = currentLink.getNext(); // Methods require brackets (), while fields do not. The Node fields should be private and unnaccessible from here.
+				currentLink = currentLink.getNext(); 
 			}
 		}
 		if (currentLink == head) {
@@ -129,12 +126,29 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	}
 
 	public T removeFromEnd() {
-		//TODO: finish removeFromEnd() method
+		if (head.getNext() == null || head == null) {
+			head = null;
+			tail = null;
+			size = 0;
+		}
+		else {
+			Node<T> pointer = head;
+			do {
+				pointer.getNext();
+			} while (pointer != tail);
+			tail = pointer;
+			tail.setNext(null);
+			size--;
+		}
 	}
 
 
 	public T removeFromStart() {
-		//TODO: finish removeFromStart() method.
+		if (head != null) {
+			Node<T> pointer = head.getNext();
+			head = pointer;
+			size--;
+		}
 	}
 	
 	//returns size
@@ -165,7 +179,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * 
 	 * 
 	 */
-	
 	public T find(T e){	
 		Node<T> current = head;			
 		if(isEmpty()){
@@ -189,10 +202,13 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * 
 	 * TODO: finish addInOrder(T) method.
 	 * INCOMPLETE
-	 * 
-	 * 
+	 *
 	 */
-	
+	public void addInOrder(T data) {
+		
+	}
+
+
 	 /**
 	  * Searches for index of object within list. If no such object exists or the list is empty, returns -1.
 	  * @author DeerByte
