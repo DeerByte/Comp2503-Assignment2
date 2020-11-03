@@ -91,9 +91,18 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		//TODO: Finish add(int, T) method.
 	}
 
-	public boolean addToEnd(T data) {
-		return add(data);
-	}
+	public void addToEnd(T data) {
+		Node<T> nodeAdd = new Node<T>(data);
+		if(start != null){
+            Node<T> curr = start;
+            while(curr.getNext() != null){
+               curr = curr.getNext();
+            }
+            curr.setNext(nodeAdd);
+        }
+        else
+            start = nodeAdd;
+    }
 
 	/*
 	 * Remove Link Method
