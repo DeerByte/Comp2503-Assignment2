@@ -99,7 +99,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	*
 	* If you're removing a node, you can use an index or an object reference address. Method overloading allows for both.
 	*/
-	public T remove(/* int index OR T data */) {
+	public T remove(T obj) {
 
 		Node<T> currentLink = head;
 		Node<T> previousLink = head;
@@ -109,15 +109,15 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		}
 
 		while (!currentLink.getData().equals(obj)) {
-			if (currentLink.next == null) {
+			if (currentLink.getNext() == null) {
 				return null;
 			} else {
 				previousLink = currentLink;
-				currentLink = currentLink.next; // Methods require brackets (), while fields do not. The Node fields should be private and unnaccessible from here.
+				currentLink = currentLink.getNext(); // Methods require brackets (), while fields do not. The Node fields should be private and unnaccessible from here.
 			}
 		}
 		if (currentLink == head) {
-			head = head.next;
+			head = head.getNext();
 		} else {
 
 			System.out.println("match found");
