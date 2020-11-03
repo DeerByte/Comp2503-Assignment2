@@ -22,3 +22,8 @@ remove /rmv from st/end
 find
 
 Node class constructers/get/set
+
+Zain Muhammad
+-Created run method in A2
+-Created external descending comparator using subtraction instead of conditonals
+-Created external ascending comparator using subtraction instead of conditonals
