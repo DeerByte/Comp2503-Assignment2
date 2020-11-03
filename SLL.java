@@ -1,17 +1,16 @@
+/**
+ * @author Justin 
+ * SLL class
+ */
+
 import java.util.Comparator;
 
 public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	private Node<T> head, tail, start;
-	private int size;
-	
-	
-	//I haven't created this class since someone else was doing that.
+	private int size;	
 	private Comparator<T> comparator;
 	
-
-
-	//A little confused do I put our avengers variables in our list?
 	public SLL() {
 		head = null;
 		tail = null;
@@ -39,14 +38,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		return (head == null);
 	}
 	
-	/*
-	 * Insert Method
-	 * 
-	 * 
-	 * INCOMPLETE
-	 * 
-	 * 
-	 */
 	public void addToStart(T data) 
     { 
         Node<T> nodeToAdd = new Node<>(data); 
