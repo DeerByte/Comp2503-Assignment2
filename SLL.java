@@ -58,10 +58,14 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	*/
 
 	public boolean contains(T data) {
-
-		//Search for data object.
-		// If found, return true
-		// else false
+		Node<T> current = head;    
+        while (current != null) 
+        { 
+            if (current.getData() == data) 
+                return true;    
+            current = current.getNext(); 
+        } 
+        return false;
 	}
 
 	/**
