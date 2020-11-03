@@ -56,6 +56,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	  */
 	public void addToStart(T data) 
     { 
+		size++;
         Node<T> nodeToAdd = new Node<>(data); 
         if(isEmpty())
         	head = nodeToAdd;
@@ -97,17 +98,18 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 */
 	public void add(int index, T data) {
 		int length = size();        
-    	if (length == 0 || index <= 0)
+    	if (length == 0 || index == 0)
     		addToStart(data);
     	else if (length <= index)
     		addToEnd (data);
     	else {
     		Node<T> nodeAdd = new Node<>(data);
     		Node<T> curr = head;                
-    		for (int count = 0; count < index - 1; count++)                			
+    		for (int count = 0; count < index -1; count++)                			
     			curr = curr.getNext();            
     		nodeAdd.setNext (curr.getNext());            				
-    		curr.setNext(nodeAdd);
+			curr.setNext(nodeAdd);
+			size++;
     	}
     }
 
@@ -116,6 +118,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @param data
 	 */
 	public void addToEnd(T data) {
+		size++;
 		Node<T> nodeAdd = new Node<>(data);
 		if(head != null){
             Node<T> curr = head;
@@ -161,6 +164,35 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			previousLink.setNext(currentLink.getNext());
 		}
 		return currentLink.getData();
+	}
+
+	public T remove(int index) { 
+		Node<T> removed;
+
+		if (index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		} else if (index == 0) {
+			Node<T> newHead = head.getNext();
+			removed = head;
+			head = newHead;
+
+			return removed.getData();
+
+		} else {
+			Node<T> pointer = head;
+			int i = 0;
+
+			while (i < index - 1) {
+				pointer = pointer.getNext();
+			}
+			removed = pointer.getNext();
+			pointer.setNext(removed.getNext());
+
+			return removed.getData();
+		}
+		
+
+		
 	}
 
 	/**
@@ -231,7 +263,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @return T index data
 	 */
 	public T get(int index) {
-		if (index > size - 1) {
+		if (index >= size) {
 			throw new IndexOutOfBoundsException(index);
 		}
 
@@ -276,7 +308,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
         if (head == null || compare(e, head.getData()) <= 0) {
             addToStart(e);
 
-        } else if (tail == null || compare(e, tail.getData()) > 0) { // Fix, will not sort using compare
+        } else if (tail == head || compare(e, tail.getData()) > 0) { // Fix, will not sort using compare
 			addToEnd(e);
         
         } else {
