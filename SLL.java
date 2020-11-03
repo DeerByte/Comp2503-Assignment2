@@ -141,6 +141,10 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	public int size() {
 		return size;
 	}
+
+	protected Node<T> getHead() {
+		return head;
+	}
 	
 	public T get(int index) {
 		if (index > size - 1) {
