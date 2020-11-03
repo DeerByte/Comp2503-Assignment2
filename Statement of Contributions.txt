@@ -24,6 +24,5 @@ find
 Node class constructers/get/set
 
 Zain Muhammad
--Created run method in A2
 -Created descending comparator using subtraction instead of conditonals
 -Created ascending comparator using subtraction instead of conditonals
