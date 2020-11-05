@@ -157,7 +157,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @return T link
 	 */
 	public T remove(T obj) {
-
+		size--;
 		Node<T> currentLink = head;
 		Node<T> previousLink = head;
 
@@ -188,7 +188,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	public T remove(int index) { 
 		Node<T> removed;
-
+		size--;
 		if (index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException();
 		} else if (index == 0) {
@@ -220,7 +220,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @return T link 
 	 */
 	public T removeFromEnd() {
-		 if (head == null) {
+		size--;
+		if (head == null) {
 	        	return null;
 	        }	        
 	    	T data = null;	    	
@@ -248,7 +249,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @return T link 
 	 */
 		public T removeFromStart() {
-		 T data = null;
+		size--;
+			T data = null;
 	        if(head != null)
 	        {
 	            if(head.getNext() == null)
