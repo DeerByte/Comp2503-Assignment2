@@ -1,7 +1,7 @@
 /**
  * Avenger object. Used to record the avenger's alias, last name, and frequency mentioned.
  * 
- * @author DeerByte
+ * @author DeerByte (Ryan)
  * @date Fall 2020 
  */
 
@@ -108,6 +108,7 @@ public class Avenger implements Comparable<Avenger>{
 	/**
 	 * Overrides Object.equals(Object o). 
      * Does not compare the freqMentioned fields.
+	 * This override results in a "pseudo-equivalent" comparison.
 	 */
 	@Override
 	public boolean equals(Object obj) {
