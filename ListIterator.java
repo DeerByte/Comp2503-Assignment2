@@ -2,7 +2,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * ListIterator-like object, used to traverse a SinglyLinkedList (SLL) object.
+ * ListIterator-like object, used to traverse a custom SinglyLinkedList (SLL) object.
+ * Data type (T) must implement the Comparable interface.
  * 
  * @author DeerByte;
  * 
@@ -20,7 +21,10 @@ public class ListIterator<T extends Comparable<T>> implements Iterator<T>{
     }
 
     public boolean hasNext() {
-        return currNode.hasNext();
+        if (currNode == null) {
+            return false;
+        }
+        return currNode != null;
     }
 
     public T next() {
