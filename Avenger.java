@@ -1,7 +1,7 @@
 /**
  * Avenger object. Used to record the avenger's alias, last name, and frequency mentioned.
  * 
- * @author DeerByte (Ryan)
+ * @author DeerByte
  * @date Fall 2020 
  */
 

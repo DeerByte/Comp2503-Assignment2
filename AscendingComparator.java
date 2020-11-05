@@ -3,7 +3,7 @@
  * If both objects are mentioned the same number of times, they will be compared by ascending order of lastName.length().
  * If both objects have the same length, they will be sorted by ascending alphabetic order of their lastName.
  * 
- * @author DeerByte (Ryan)
+ * @author DeerByte 
  */
 import java.util.Comparator;
 

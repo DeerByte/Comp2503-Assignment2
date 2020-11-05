@@ -1,5 +1,5 @@
 /**
- * @author Justin, DeerByte (Ryan)
+ * @author Justin, DeerByte
  * 
  * SLL class 
  * 

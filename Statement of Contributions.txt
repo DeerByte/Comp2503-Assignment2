@@ -1,4 +1,4 @@
-Ryan Sobolewski
+Ryan Sobolewski (DeerByte)
 -Completed A2.java
 -Completed ListIterator.java
 -Completed Iterable implementation within SLL.java
