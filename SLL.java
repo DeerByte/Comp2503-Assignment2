@@ -68,7 +68,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
         Node<T> nodeToAdd = new Node<>(data); 
 		if(isEmpty())
 		{
-        	head = nodeToAdd;
+			head = nodeToAdd;
+			tail = nodeToAdd;
 		}
 		else
         {
@@ -113,11 +114,16 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	public void add(int index, T data) 
 	{
 		int length = size();        
-    	if (length == 0 || index == 0)
-    		addToStart(data);
-    	else if (length <= index)
-    		addToEnd (data);
-    	else {
+		if (length == 0 || index == 0)
+		{
+			addToStart(data);
+		}
+		else if (length <= index) 
+		{
+			addToEnd (data);
+		}
+		else 
+		{
     		Node<T> nodeAdd = new Node<>(data);
     		Node<T> curr = head;                
     		for (int count = 0; count < index -1; count++)                			
@@ -164,21 +170,27 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		Node<T> currentLink = head;
 		Node<T> previousLink = head;
 
-		if (currentLink == null) {
+		if (currentLink == null) 
+		{
 			return null;
 		}
 
-		while (!currentLink.getData().equals(obj)) {
-			if (currentLink.getNext() == null) {
+		while (!currentLink.getData().equals(obj)) 
+		{
+			if (currentLink.getNext() == null) 
+			{
 				return null;
-			} else {
+			} else 
+			{
 				previousLink = currentLink;
 				currentLink = currentLink.getNext();
 			}
 		}
-		if (currentLink == head) {
+		if (currentLink == head) 
+		{
 			head = head.getNext();
-		} else {
+		} else 
+		{
 
 			System.out.println("match found");
 			System.out.println("currentLink: " + currentLink);
@@ -189,23 +201,30 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		return currentLink.getData();
 	}
 
-	public T remove(int index) { 
+	public T remove(int index) 
+	{ 
 		Node<T> removed;
 		size--;
-		if (index < 0 || index >= size) {
+		if (index < 0 || index >= size) 
+		{
 			throw new IndexOutOfBoundsException();
-		} else if (index == 0) {
+		} 
+		else if (index == 0) 
+		{
 			Node<T> newHead = head.getNext();
 			removed = head;
 			head = newHead;
 
 			return removed.getData();
 
-		} else {
+		}
+		else 
+		{
 			Node<T> pointer = head;
 			int i = 0;
 
-			while (i < index - 1) {
+			while (i < index - 1) 
+			{
 				pointer = pointer.getNext();
 			}
 			removed = pointer.getNext();
@@ -222,13 +241,16 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * Removes the object from the end of the list
 	 * @return T link 
 	 */
-	public T removeFromEnd() {
+	public T removeFromEnd() 
+	{
 		size--;
-		if (head == null) {
+		if (head == null) 
+		{
 	        	return null;
 	        }	        
 	    	T data = null;	    	
-	    	if (size() == 1) {
+			if (size() == 1) 
+			{
 	    		data = head.getData();
 	    		head = null;
 	        	return data;
@@ -251,7 +273,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * Removes the object from the start of the list
 	 * @return T link 
 	 */
-		public T removeFromStart() {
+		public T removeFromStart() 
+		{
 		size--;
 			T data = null;
 	        if(head != null)
@@ -273,12 +296,16 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		}
 	
 	//returns size
-	public int size() {
+	public int size() 
+	{
 		return size;
 	}
 
-	//returns head
-	protected Node<T> getHead() {
+	/**
+	 * Returns the SLL head Node.
+	 */
+	protected Node<T> getHead() 
+	{
 		return head;
 	}
 	
@@ -287,13 +314,16 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @param int index
 	 * @return T index data
 	 */
-	public T get(int index) {
-		if (index >= size) {
+	public T get(int index) 
+	{
+		if (index >= size) 
+		{
 			throw new IndexOutOfBoundsException(index);
 		}
 
 		Node<T> pointer = head;
-		for (int i = 0; i < index; i ++) {
+		for (int i = 0; i < index; i ++) 
+		{
 			pointer = pointer.getNext();
 		}
 		return pointer.getData();
@@ -304,14 +334,18 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * @param T object
 	 * @return T data
 	 */
-	public T find(T e){	
+	public T find(T e)
+	{	
 		Node<T> current = head;			
-		if(isEmpty()){
-			System.out.println("Empty LinkedList");	
+		if(isEmpty())
+		{
+			return null;	
 
 		} else {
-			while(!current.getData().equals(e)){
-				if(current.getNext() == null){
+			while(!current.getData().equals(e))
+			{
+				if(current.getNext() == null)
+				{
 					return null;
 
 				} else {
@@ -328,18 +362,25 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 * 
 	 * 
 	 */
-	public void addInOrder(T e) {
+	public void addInOrder(T e) 
+	{
         
-        if (head == null || compare(e, head.getData()) <= 0) {
+		if (head == null || compare(e, head.getData()) <= 0) 
+		{
             addToStart(e);
 
-        } else if (tail == head || compare(e, tail.getData()) > 0) { // Fix, will not sort using compare
+		} 
+		else if (tail == head || compare(e, tail.getData()) > 0) 
+		{
 			addToEnd(e);
         
-        } else {
+		} 
+		else 
+		{
 			Node<T> pointer = head;
 			Node<T> newNode = new Node<>(e);
-			while (pointer.hasNext() && compare(e, pointer.getNext().getData()) > 0) {
+			while (pointer.hasNext() && compare(e, pointer.getNext().getData()) > 0) 
+			{
 				pointer = pointer.getNext();
 			}
 			newNode.setNext(pointer.getNext());

@@ -3,25 +3,27 @@ Ryan Sobolewski
 -Completed ListIterator.java
 -Completed Iterable implementation within SLL.java
 -Completed getHead() method within SLL.java
--Provided source code for DescendingComparator compare(Avenger a1, Avenger a2) method.
+-Provided A1 source code for AscendingComparator compare(Avenger a1, Avenger a2) method.
 -Provided source code for Avenger.java
 -Completed find(T e) method within SLL.java
 -Completed addInOrderMethod within SLL.java
+-Redesigned addToEnd(T e) method within SLL.java
+-Replaced AscendingComparator with redesigned code from A1.
 
 Justin Gajer
 SLL class constructors/get/set
+	methods
+	compare
+	isempty
+	addtostart
+	add
+	add (index)
+	add to end/start
+	remove /rmv from st/end
+	find
 
-methods
-compare
-isempty
-addtostart
-add
-add (index)
-add to end/start
-remove /rmv from st/end
-find
-
-Node class constructers/get/set
+Node class 
+	constructers/get/set
 
 Zain Muhammad
 -Created descending comparator using subtraction instead of conditonals
