@@ -1,20 +1,27 @@
+/**
+ * Compares Avenger objects by ascending value of frequency mentioned. 
+ * If both objects are mentioned the same number of times, they will be compared by ascending order of lastName.length().
+ * If both objects have the same length, they will be sorted by ascending alphabetic order of their lastName.
+ * 
+ * @author DeerByte
+ */
 import java.util.Comparator;
-//Ascending Comparator
+
 public class AscendingComparator implements Comparator<Avenger>{
 
     public int compare(Avenger a1, Avenger a2){
-        int compFreq= a1.getFreqMentioned() - a2.getFreqMentioned();
-
-
-        if (compFreq==0){
-            return a2.getAlias().compareTo(a1.getAlias());
-
-
-        }
-        else{
+        int compFreq = a1.getFreqMentioned() - a2.getFreqMentioned();
+        
+        if (compFreq != 0) {
             return compFreq;
         }
 
+        int compLastNameSize = a1.getLastName().length() - a2.getLastName().length();
 
+        if (compLastNameSize != 0) {
+            return compLastNameSize;
         }
+        
+        return a1.getLastName().compareTo(a2.getLastName());
     }
+}
