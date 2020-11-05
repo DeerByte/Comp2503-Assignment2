@@ -6,9 +6,16 @@ Ryan Sobolewski
 -Provided A1 source code for AscendingComparator compare(Avenger a1, Avenger a2) method.
 -Provided source code for Avenger.java
 -Completed find(T e) method within SLL.java
--Completed addInOrderMethod within SLL.java
+-Completed addInOrderMethod(T e) within SLL.java
 -Redesigned addToEnd(T e) method within SLL.java
 -Replaced AscendingComparator with redesigned code from A1.
+-Added IndexOutOfBoundsException to add(int, T) method.
+-Completed debugging of program to ensure proper output and behaviour, including 
+      the following classes:
+			ListIterator
+			A2
+			SLL
+			AscendingComparator
 
 Justin Gajer
 SLL class constructors/get/set
