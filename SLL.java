@@ -136,18 +136,21 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	{
 		size++;
 		Node<T> nodeAdd = new Node<>(data);
-		if(head != null)
+		
+		if(head == null)
 		{
-            Node<T> curr = head;
-			while(curr.getNext() != null)
-			{
-               curr = curr.getNext();
-            }
-            curr.setNext(nodeAdd);
-        }
+			head = nodeAdd;
+			tail = nodeAdd;
+		}
+		else if (head == tail) 
+		{
+			head.setNext(nodeAdd);
+			tail = nodeAdd;
+		}
 		else
 		{
-        	head = nodeAdd;
+			tail.setNext(nodeAdd);
+			tail = nodeAdd;
 		}
 	}
 
@@ -351,27 +354,37 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	  * @param e - element within list
 	  * @return int: index of object, or -1.
 	  */
-	 public int indexOf(T e) {
+	 public int indexOf(T e) 
+	 {
 		 int index = -1;
 
-		 if (head == null) {
+		 if (head == null) 
+		 {
 			 return index;
-
-		 } else {
+		 }  
+		 else if (tail.getData().equals(e)) 
+		 {
+			 return size - 1;
+		 }
+		 else 
+		 {
 			Node<T> current = head;
 			index = 0;
 
-			while (!current.getData().equals(e)) {
-				if (!current.hasNext()) {
-					return -1;
+			while (index < size) 
+			{
+				if (current.getData().equals(e)) 
+				{
+					return index;
 				}
 				index++;
 			}
-			return index;
+			return -1;
 		 }
 	 }
 
-	 public ListIterator<T> iterator() {
+	 public ListIterator<T> iterator() 
+	 {
 		return new ListIterator<>(this);
 	 }
 }
