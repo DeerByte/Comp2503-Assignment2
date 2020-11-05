@@ -9,7 +9,7 @@ public class Avenger implements Comparable<Avenger>{
 	
 	private String heroAlias;
 	private String lastName;
-	private int freqMentioned;
+	private int frequencyMentioned;
 
 	/**
 	 * Class Constructor. Instantiates an Avenger object of the specified alias and lastName, with a frequency mentioned of 0.
@@ -19,20 +19,20 @@ public class Avenger implements Comparable<Avenger>{
 	public Avenger(String alias, String lastName) {
 		heroAlias = alias;
 		this.lastName = lastName;
-		freqMentioned = 0;
+		frequencyMentioned = 0;
 	}
 	
 	/**
-	 * Class Constructor. Instantiates an Avenger object of the specified alias, lastName, and frequency mentioned (freqMentioned). 
+	 * Class Constructor. Instantiates an Avenger object of the specified alias, lastName, and frequency mentioned (frequencyMentioned). 
 	 * Used to keep track of times an Avenger is mentioned.
 	 * @param alias - String representing the Avenger alias.
 	 * @param lastName - String representing the Avenger last name.
-	 * @param freqMentioned - int representing the amount of times an Avenger is mentioned.
+	 * @param frequencyMentioned - int representing the amount of times an Avenger is mentioned.
 	 */
-	public Avenger(String alias, String lastName, int freqMentioned) {
+	public Avenger(String alias, String lastName, int frequencyMentioned) {
 		heroAlias = alias;
 		this.lastName = lastName;
-		this.freqMentioned = freqMentioned;
+		this.frequencyMentioned = frequencyMentioned;
 	}
 	
 	/**
@@ -55,8 +55,8 @@ public class Avenger implements Comparable<Avenger>{
 	 * Sets the frequency mentioned for the Avenger.
 	 * @param frequency
 	 */
-	public void setFreqMentioned(int frequency) {
-		freqMentioned = frequency;
+	public void setFrequencyMentioned(int frequency) {
+		frequencyMentioned = frequency;
 	}
 	
 	/**
@@ -79,15 +79,15 @@ public class Avenger implements Comparable<Avenger>{
 	 * Returns the number of times the Avenger was mentioned.
 	 * @return
 	 */
-	public int getFreqMentioned() {
-		return freqMentioned;
+	public int getFrequencyMentioned() {
+		return frequencyMentioned;
 	}
 	
 	/**
 	 * Increments the frequency mentioned by 1.
 	 */
 	public void mentioned() {
-		freqMentioned++;
+		frequencyMentioned++;
 	}
 	
 	/**
@@ -102,12 +102,12 @@ public class Avenger implements Comparable<Avenger>{
 	 */
 	@Override
 	public String toString() {
-		return heroAlias + " aka " + lastName + " mentioned " + freqMentioned + " time(s)";
+		return heroAlias + " aka " + lastName + " mentioned " + frequencyMentioned + " time(s)";
 	}
 	
 	/**
 	 * Overrides Object.equals(Object o). 
-     * Does not compare the freqMentioned fields.
+     * Does not compare the frequencyMentioned fields.
 	 * This override results in a "pseudo-equivalent" comparison.
 	 */
 	@Override
@@ -137,7 +137,7 @@ public class Avenger implements Comparable<Avenger>{
 		return true;
     }
     /**
-     * Does not compare hash the freqMentioned field.
+     * Does not hash the frequencyMentioned field.
      * Source: https://medium.com/codelog/overriding-hashcode-method-effective-java-notes-723c1fedf51c
      */
     @Override

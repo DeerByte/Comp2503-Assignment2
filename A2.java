@@ -11,9 +11,9 @@ import java.util.Scanner;
 */
 /**
  * Added methods: 
- * 		getAvengerId(int);
+ * 		getRosterIndex(int);
  * 		createAvenger(int);
- * 		addMention(Avenger);
+ * 		addToMentionList(Avenger);
  * 		printFirstXFromList(int, SLL<Avenger>).
  * 
  * Finished method: 
@@ -86,11 +86,12 @@ public class A2 {
 
 			if (word.length() > 0) {
 				totalwordcount++;
-				int rosterIndex = getAvengerId(word);
+				
+				int rosterIndex = getRosterIndex(word);
 
 				if (rosterIndex != -1) {
 					Avenger hero = createAvenger(rosterIndex);
-					addMention(hero);
+					addToMentionList(hero);
 				}
 			}
 		}
@@ -154,19 +155,19 @@ public class A2 {
 	 * 
 	 *  
 	 * @param input - String to be matched against AVENGER_ROSTER.
-	 * @return int - first index of corresponding hero in avengersRoster. 
+	 * @return int - first index of corresponding Avenger within avengersRoster. 
 	 */
-	private int getAvengerId(String input) {
-		int id = -1;
+	private int getRosterIndex(String input) {
+		int index= -1;
 		for(int i = 0; i < AVENGER_ROSTER.length; i++) {
 			for (int j = 0; j < 2; j++) {
 				if (AVENGER_ROSTER[i][j].equals(input)) {
-					id = i;
-					return id;
+					index = i;
+					return index;
 				}
 			}
 		}
-		return id;
+		return index;
 	}
 
 	/**
@@ -190,7 +191,7 @@ public class A2 {
 	 * @see Avenger
 	 * @see SLL
 	 */
-	private void addMention(Avenger a) {
+	private void addToMentionList(Avenger a) {
 		int index = mentionList.indexOf(a);
 
 		if (index == -1) {
@@ -210,7 +211,7 @@ public class A2 {
 	private void printFirstXFromList(int numToPrint, SLL<Avenger> list) {
 		int size = list.size();
 
-		if (size == 0) {
+		if (list.isEmpty()) {
 			return;
 		}
 		ListIterator<Avenger> itr = list.iterator();

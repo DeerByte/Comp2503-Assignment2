@@ -14,26 +14,26 @@ import java.util.NoSuchElementException;
  * https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Iterable.html
  */
 public class ListIterator<T extends Comparable<T>> implements Iterator<T>{
-    Node<T> currNode;
+    Node<T> currentNode;
 
     public ListIterator(SLL<T> list) {
-        currNode = list.getHead();
+        currentNode = list.getHead();
     }
 
     public boolean hasNext() {
-        if (currNode == null) {
+        if (currentNode == null) {
             return false;
         }
-        return currNode != null;
+        return currentNode != null;
     }
 
     public T next() {
-        if (currNode == null) {
+        if (currentNode == null) {
             throw new NoSuchElementException();
         }
 
-        T data = currNode.getData();
-        currNode = currNode.getNext();
+        T data = currentNode.getData();
+        currentNode = currentNode.getNext();
         return data;
     }
 }
