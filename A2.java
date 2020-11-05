@@ -21,7 +21,7 @@ import java.util.Scanner;
  * 		printResults();
  * 
  * @version November 1, 2020
- * @author DeerByte
+ * @author DeerByte (Ryan)
  */
 
 public class A2 {
