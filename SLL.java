@@ -1,5 +1,5 @@
 /**
- * @author Justin 
+ * @author Justin, DeerByte (Ryan)
  * 
  * SLL class 
  * 
@@ -47,10 +47,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		{
 			return o1.compareTo(o2);
 		}
-		else
-		{
-			return comparator.compare(o1,o2);
-		}
+		
+		return comparator.compare(o1,o2);
 	}
 	
 	/**
@@ -118,25 +116,31 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 */
 	public void add(int index, T data) 
 	{
-		int length = size();        
-		if (length == 0 || index == 0)
+		      
+		if (index < 0 || index > size)
+		{
+			throw new IndexOutOfBoundsException(index);
+		}
+		else if (index == 0)
 		{
 			addToStart(data);
 		}
-		else if (length <= index) 
+		else if (size <= index) 
 		{
 			addToEnd (data);
 		}
-		else 
-		{
-    		Node<T> nodeAdd = new Node<>(data);
-    		Node<T> curr = head;                
-    		for (int count = 0; count < index -1; count++)                			
-    			curr = curr.getNext();            
-    		nodeAdd.setNext (curr.getNext());            				
-			curr.setNext(nodeAdd);
-			size++;
-    	}
+		
+		
+    	Node<T> nodeAdd = new Node<>(data);
+    	Node<T> curr = head;                
+		for (int count = 0; count < index -1; count++) 
+		{              			
+			curr = curr.getNext(); 
+		}           
+    	nodeAdd.setNext (curr.getNext());            				
+		curr.setNext(nodeAdd);
+		size++;
+    	
     }
 
 	/**
@@ -175,9 +179,13 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		Node<T> currentLink = head;
 		Node<T> previousLink = head;
 
-		if (currentLink == null) 
+		if (currentLink == null || obj == null) 
 		{
 			return null;
+		} 
+		else if (obj.equals(head.getData()))
+		{
+			return removeFromStart();
 		}
 
 		while (!currentLink.getData().equals(obj)) 
@@ -185,24 +193,15 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			if (currentLink.getNext() == null) 
 			{
 				return null;
-			} else 
+			} 
+			else 
 			{
 				previousLink = currentLink;
 				currentLink = currentLink.getNext();
 			}
 		}
-		if (currentLink == head) 
-		{
-			head = head.getNext();
-		} else 
-		{
-
-			System.out.println("match found");
-			System.out.println("currentLink: " + currentLink);
-			System.out.println("firstLink: " + head);
-
-			previousLink.setNext(currentLink.getNext());
-		}
+		previousLink.setNext(currentLink.getNext());
+		
 		return currentLink.getData();
 	}
 
@@ -214,7 +213,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	public T remove(int index) 
 	{ 
 		Node<T> removed;
-		size--;
+		
 		if (index < 0 || index >= size) 
 		{
 			throw new IndexOutOfBoundsException();
@@ -224,9 +223,6 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			Node<T> newHead = head.getNext();
 			removed = head;
 			head = newHead;
-
-			return removed.getData();
-
 		}
 		else 
 		{
@@ -236,15 +232,14 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 			while (i < index - 1) 
 			{
 				pointer = pointer.getNext();
+				i++;
 			}
 			removed = pointer.getNext();
 			pointer.setNext(removed.getNext());
-
-			return removed.getData();
 		}
-		
 
-		
+		size--;
+		return removed.getData();
 	}
 
 	/**
@@ -256,27 +251,30 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		size--;
 		if (head == null) 
 		{
-	        	return null;
-	        }	        
-	    	T data = null;	    	
-			if (size() == 1) 
-			{
-	    		data = head.getData();
-	    		head = null;
-	        	return data;
-	        }
-
-	        Node<T> curr = head;
-	        Node<T> prev = head;
-	       
-	        while (curr.getNext() != null) 
-	        {
-	        	prev = curr;
-	        	curr = curr.getNext();
-	        }
-	        data = curr.getData();
-	        prev.setNext(null);
+	        return null;
+		}	 
+		       
+		T data = null;
+			    	
+		if (size() == 1) 
+		{
+	    	data = head.getData();
+	    	head = null;
 	        return data;
+	    }
+
+	    Node<T> curr = head;
+	    Node<T> prev = head;
+	       
+	    while (curr.getNext() != null) 
+	    {
+	        prev = curr;
+	        curr = curr.getNext();
+	    }
+	    data = curr.getData();
+		prev.setNext(null);
+		
+	    return data;
 	    }
 
 	/**
@@ -286,8 +284,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		public T removeFromStart() 
 		{
 		size--;
-			T data = null;
-	        if(head != null)
+		T data = null;
+	    if(head != null)
 	        {
 	            if(head.getNext() == null)
 	            {
@@ -398,7 +396,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 				pointer = pointer.getNext();
 			}
 			newNode.setNext(pointer.getNext());
-			pointer.setNext(newNode);            
+			pointer.setNext(newNode); 
+			size++;          
         }
 	}
 
@@ -432,6 +431,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 				{
 					return index;
 				}
+				current = current.getNext();
 				index++;
 			}
 			return -1;
@@ -439,7 +439,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	 }
 
 	 /**
-	  *  List Iterator
+	  *  Returns a ListIterator object that can iterate forward through the SLL.
 	  *  @return list
 	  */
 	 public ListIterator<T> iterator() 
