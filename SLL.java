@@ -1,6 +1,11 @@
 /**
  * @author Justin 
- * SLL class
+ * 
+ * SLL class 
+ * 
+ * This class contains our Singly Linked List as well as it's many 
+ * methods to maintain, modify, add, remove, etc.
+ * 
  */
 
 import java.util.Comparator;
@@ -80,7 +85,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	  * checks to see if the index data matches the arg data
-	  * @param T - avenger object
+	  * @param data of type T
 	  * @return boolean: true if it matches, false if no match
 	  *  
 	  */
@@ -100,7 +105,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	 * Adds the object to the SLL at the start of the list.
-	 * @param data
+	 * @param data of type T
 	 */
 	public void add(T data) 
 	{
@@ -109,7 +114,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	 * Adds the object to the SLL at the chosen index of the list
-	 * @param index, data
+	 * @param index, data of type T
 	 */
 	public void add(int index, T data) 
 	{
@@ -136,7 +141,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	 * Adds the object to the SLL at the end of the list.
-	 * @param data
+	 * @param data of type T
 	 */
 	public void addToEnd(T data) 
 	{
@@ -162,8 +167,8 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	 * Removes the object from the list
-	 * @param T obj
-	 * @return T link
+	 * @param obj of type T
+	 * @return link  of type T
 	 */
 	public T remove(T obj) {
 		size--;
@@ -201,6 +206,11 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		return currentLink.getData();
 	}
 
+	/**
+	 * Removes the object from the list based off index
+	 * @param int index
+	 * @return T data
+	 */
 	public T remove(int index) 
 	{ 
 		Node<T> removed;
@@ -295,7 +305,10 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	        return data;
 		}
 	
-	//returns size
+	/*
+	 * Size method to return size
+	 * @return int size
+	 */
 	public int size() 
 	{
 		return size;
@@ -303,6 +316,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 
 	/**
 	 * Returns the SLL head Node.
+	 * @return head of T data
 	 */
 	protected Node<T> getHead() 
 	{
@@ -331,7 +345,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	
 	/**
 	 * Finds an object in the list
-	 * @param T object
+	 * @param e of data type T
 	 * @return T data
 	 */
 	public T find(T e)
@@ -359,7 +373,7 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 	
 	/*
 	 * Add in Order Method
-	 * 
+	 * @param e of type T
 	 * 
 	 */
 	public void addInOrder(T e) 
@@ -424,6 +438,10 @@ public class SLL<T extends Comparable<T>> implements Iterable<T>{
 		 }
 	 }
 
+	 /**
+	  *  List Iterator
+	  *  @return list
+	  */
 	 public ListIterator<T> iterator() 
 	 {
 		return new ListIterator<>(this);
