@@ -10,6 +10,16 @@ import java.util.Scanner;
  * @date Fall 2020
 */
 /**
+ * Added methods: 
+ * 		getAvengerId(int);
+ * 		createAvenger(int);
+ * 		addMention(Avenger);
+ * 		printFirstXFromList(int, SLL<Avenger>).
+ * 
+ * Finished method: 
+ * 		createOrderedLists();
+ * 		printResults();
+ * 
  * @version November 1, 2020
  * @author DeerByte
  */
@@ -111,7 +121,7 @@ public class A2 {
 
 		System.out.println("All avengers in the order they appeared in the input stream:");
 		for (Avenger hero : mentionList) {
-			System.out.println(hero.toString());
+			System.out.println(hero);
 		}
 
 		System.out.println();
@@ -159,10 +169,27 @@ public class A2 {
 		return id;
 	}
 
+	/**
+	 * Creates an Avenger object using the first index of AVENGER_ROSTER.
+	 * 
+	 * @param rosterIndex - first index of the 2D AVENGER_ROSTER array.
+	 * @return Avenger object representing the index within AVENGER_ROSTER.
+	 */
 	private Avenger createAvenger(int rosterIndex) {
 		return new Avenger(AVENGER_ROSTER[rosterIndex][0], AVENGER_ROSTER[rosterIndex][1], 1);
 	}
 
+	/**
+	 * Checks for index of Avenger within mentionList. 
+	 * If there is no pseudo-equivalent object, the Avenger is added to mentionList.
+	 * If a pseudo-equivalent object exists, this object is retrieved and mentioned().
+	 * 
+	 * Pseudo-equivalent implies the objects are not equal as per Object.equals(Object o).
+	 * Avenger objects are only compared by their Alias and LastName fields for this implementation.
+	 * 
+	 * @see Avenger
+	 * @see SLL
+	 */
 	private void addMention(Avenger a) {
 		int index = mentionList.indexOf(a);
 
@@ -174,6 +201,12 @@ public class A2 {
 		}
 	}
 
+	/**
+	 * Prints the first 'X' number of elements from the SLL<Avenger> list referenced.
+	 * If numToPrint >= size, all elements within the list will be printed.
+	 * @param numToPrint
+	 * @param list
+	 */
 	private void printFirstXFromList(int numToPrint, SLL<Avenger> list) {
 		int size = list.size();
 
