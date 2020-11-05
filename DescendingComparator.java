@@ -1,3 +1,6 @@
+/**
+ * @author Zain
+ */
 import java.util.Comparator;
 //DescendingComparator
 public class DescendingComparator implements Comparator<Avenger> {
